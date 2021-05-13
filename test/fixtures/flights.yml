@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_id: MyString
+  integer: MyString
+  destination_id: MyString
+  integer: MyString
+
+two:
+  origin_id: MyString
+  integer: MyString
+  destination_id: MyString
+  integer: MyString
