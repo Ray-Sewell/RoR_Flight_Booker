@@ -1,3 +1,11 @@
-<% @flights.each do |flight| %>
-    <p><%= flight.departure_airport.airport_code %> => <%= flight.arrival_airport.airport_code %></p>
+<%= form_with url: flights_path, method: :get do |form| %>
+    <%= select_tag(:origin_id, options_for_select(@airport_options))%>
+    <%= select_tag(:destination_id, options_for_select(@airport_options))%>
+    <%= submit_tag("Search flights")%>
+<% end %>
+
+
+<p><%= params%></p>
+<% @query_results.each do |f| %>
+    <%= link_to f.scheduled_time, f %>
 <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FlightBooker</title>
+    <title>Flight Booker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,29 @@
   </head>
 
   <body>
+    <nav class="navbar is-link" role="navigation">
+      <div class="navbar-brand">
+          <%= link_to "Flight Booker", root_path, class:"navbar-item" %>
+      </div>
+      <div class="navbar-menu">
+          <div class="navbar-item">
+          </div>
+      </div>
+      <div class="navbar-end">
+          <div class="navbar-item">
+          </div>
+      </div>
+    </nav>
+    <% if flash[:notice] %>
+        <div class="notification is-success global-notification p-2">
+        <p class="notice"><%= notice %></p>
+        </div>
+    <% end %>
+    <% if flash[:alert] %>
+        <div class="notification is-danger global-notification p-2">
+        <p class="alert"><%= alert %></p>
+        </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
