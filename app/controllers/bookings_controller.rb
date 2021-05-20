@@ -1,16 +1,18 @@
 class BookingsController < ApplicationController
     def new
         @booking = Booking.new
-        @passengers = @booking.passengers.build
         @flight = Flight.find(params[:flight])
+        params[:passenger_count].to_i.times { @booking.passengers.build }
     end
     def create
         @flight = Flight.find(params[:flight])
         @booking = @flight.bookings.create(booking_params)
         if @booking.save
-            redirect_to @booking
+            redirect_to @booking, notice: "Booking created successfully"
         else
+            flash[:alert] = "Failed to create booking, please check errors below"
             render :new
+            flash[:alert] = nil
         end
     end
     def show

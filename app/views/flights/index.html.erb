@@ -15,6 +15,10 @@
                     </div>
                 </div>
                 <div class="field">
+                    <%= form.label :passenger_count, class:"label"%>
+                    <%= form.number_field :passenger_count, value: 1, class:"input is-5-em"%>
+                </div>
+                <div class="field">
                     <%= form.submit "Search flights", class:"button is-info"%>
                 </div>
             <% end %>
@@ -29,6 +33,7 @@
                                 </label><br>
                             <% end %>
                         </div>
+                        <%= hidden_field_tag :passenger_count, params[:passenger_count] %>
                         <div class="field">
                             <%= form.submit "Select Flight", class:"button is-success"%>
                         </div>

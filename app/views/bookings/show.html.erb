@@ -1,21 +1,5 @@
 <div class="block level-item mt-5">
     <div class="column is-half">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">
-                    <p>
-                    <%= @flight.departure_airport.location_name %>
-                    [<%= @flight.departure_airport.airport_code %>] to
-                    <%= @flight.arrival_airport.location_name %>
-                    [<%= @flight.arrival_airport.airport_code %>]
-                    </p>
-                </div>
-            </div>
-            <div class="card-content">
-                <p>Depature time : <%= @flight.scheduled_time %></p>
-                <p>Arrival time : ####-##-## ##:##:## UTC</p>
-                <p># passengers</p>
-            </div>
-        </div>
+        <%= render "summary" %>
     </div>
 </div>

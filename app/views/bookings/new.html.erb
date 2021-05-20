@@ -1,36 +1,26 @@
 <div class="block level-item mt-5">
     <div class="column is-half">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">
-                    <p>
-                    <%= @flight.departure_airport.location_name %>
-                    [<%= @flight.departure_airport.airport_code %>] to
-                    <%= @flight.arrival_airport.location_name %>
-                    [<%= @flight.arrival_airport.airport_code %>]
-                    </p>
-                </div>
-            </div>
-            <div class="card-content">
-                <p>Depature time : <%= @flight.scheduled_time %></p>
-                <p>Arrival time : ####-##-## ##:##:## UTC</p>
-                <p># passengers</p>
-            </div>
-        </div>
+        <%= render "summary"%>
         <div class="block"></div>
         <div class="box has-text-centered">
             <%= form_with model: @booking, local: true do |form| %>
+                <% i = 1 %>
                 <%= form.fields_for :passengers do |p| %>
-                    <div class="field">
-                        <%= p.label :name, class: "label"%>
-                        <%= p.text_field :name, class: "input"%>
+                    <div class="block">
+                        <p class="title is-size-5 has-text-left">Passenger <%= i %></p><br>
+                        <div class="field has-text-left">
+                            <%= p.label :name, class: "subtitle is-size-6"%>
+                            <%= p.text_field :name, placeholder: "Passenger name", class: "input"%>
+                        </div>
+                        <div class="field has-text-left">
+                            <%= p.label :email, class: "subtitle is-size-6"%>
+                            <%= p.email_field :email, placeholder: "Passenger email", class: "input"%>
+                        </div>
                     </div>
-                    <div class="field">
-                        <%= p.label :email, class: "label"%>
-                        <%= p.email_field :email, class: "input"%>
-                    </div>
+                    <% i += 1 %>
                 <% end %>
                 <%= hidden_field_tag :flight, params[:flight] %>
+                <%= hidden_field_tag :passenger_count, params[:passenger_count] %>
                 <div class="field">
                     <%= form.submit "Submit booking", class: "button is-success"%>
                 </div>
