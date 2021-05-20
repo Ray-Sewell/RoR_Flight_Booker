@@ -24,7 +24,12 @@ airports = Airport.create([
 airports.each do |origin_airport|
     airports.each do |destination_airport|
         unless origin_airport == destination_airport
-            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 1.day)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 1.hours)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 3.hours)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 5.hours)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 7.hours)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 9.hours)
+            Flight.create(origin_id: origin_airport.id, destination_id: destination_airport.id, scheduled_time: Time.now + 11.hours)
         end
     end
 end

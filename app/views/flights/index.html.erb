@@ -1,33 +1,40 @@
-<%= form_with url: flights_path, method: :get do |form| %>
-    <div class="field">
-        <%= form.label :origin_id, class:"label"%>
-        <div class="select">
-            <%= select_tag(:origin_id, options_for_select(@airport_options))%>
+<div class="block level-item mt-5">
+    <div class="column is-half">
+        <div class="box has-text-centered">
+            <%= form_with url: flights_path, method: :get do |form| %>
+                <div class="field">
+                    <%= form.label :origin_id, class:"label"%>
+                    <div class="select">
+                        <%= select_tag(:origin_id, options_for_select(@airport_options))%>
+                    </div>
+                </div>
+                <div class="field">
+                    <%= form.label :destination_id, class:"label"%>
+                    <div class="select">
+                        <%= select_tag(:destination_id, options_for_select(@airport_options))%>
+                    </div>
+                </div>
+                <div class="field">
+                    <%= form.submit "Search flights", class:"button is-info"%>
+                </div>
+            <% end %>
+            <% unless @query_results.empty? %>
+                <div class="block"></div>
+                    <%= form_with url: new_booking_path, method: :get do |form| %>
+                        <div class="field">
+                            <% @query_results.each do |f| %>
+                                <label class="radio">
+                                    <%= radio_button_tag(:flight, f.id) %>
+                                    <%= f.scheduled_time%>
+                                </label><br>
+                            <% end %>
+                        </div>
+                        <div class="field">
+                            <%= form.submit "Select Flight", class:"button is-success"%>
+                        </div>
+                    <% end %>
+                </div>
+            <%end%>
         </div>
     </div>
-    <div class="field">
-        <%= form.label :destination_id, class:"label"%>
-        <div class="select">
-            <%= select_tag(:destination_id, options_for_select(@airport_options))%>
-        </div>
-    </div>
-    <div class="field">
-        <%= form.submit "Search flights", class:"button"%>
-    </div>
-<% end %>
-
-<p><%= params%></p>
-
-<%= form_with url: new_booking_path, method: :get do |form| %>
-    <div class="field">
-        <% @query_results.each do |f| %>
-            <label class="radio">
-                <%= radio_button_tag(:flight, f.id, class:"radio") %>
-                <%= f.scheduled_time%>
-            </label>
-        <% end %>
-    </div>
-    <div class="field">
-        <%= form.submit "Select Flight", class:"button"%>
-    </div>
-<% end %>
+</div>

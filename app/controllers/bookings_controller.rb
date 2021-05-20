@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
         @flight = Flight.find(params[:flight])
     end
     def create
-        @flight = Flight.find(params[:flight_id])
+        @flight = Flight.find(params[:flight])
         @booking = @flight.bookings.create(booking_params)
         if @booking.save
             redirect_to @booking
@@ -14,6 +14,8 @@ class BookingsController < ApplicationController
         end
     end
     def show
+        @booking = Booking.find(params[:id])
+        @flight = Flight.find(@booking.flight_id)
     end
     private
         def booking_params
