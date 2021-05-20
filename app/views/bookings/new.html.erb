@@ -1,0 +1,19 @@
+<p><%= @flight %></p>
+<p><%= params%></p>
+
+<%= form_with model: @booking, local: true do |form| %>
+    <%= form.fields_for :passengers do |p| %>
+        <div class="field">
+            <%= p.label :name, class: "label"%>
+            <%= p.text_field :name, class: "input"%>
+        </div>
+        <div class="field">
+            <%= p.label :email, class: "label"%>
+            <%= p.email_field :email, class: "input"%>
+        </div>
+    <% end %>
+    <%= hidden_field_tag :flight_id, params[:flight] %>
+    <div class="field">
+        <%= form.submit "Submit booking", class: "button"%>
+    </div>
+<% end %>

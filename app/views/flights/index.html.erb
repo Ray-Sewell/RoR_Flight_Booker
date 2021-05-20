@@ -1,11 +1,33 @@
 <%= form_with url: flights_path, method: :get do |form| %>
-    <%= select_tag(:origin_id, options_for_select(@airport_options))%>
-    <%= select_tag(:destination_id, options_for_select(@airport_options))%>
-    <%= submit_tag("Search flights")%>
+    <div class="field">
+        <%= form.label :origin_id, class:"label"%>
+        <div class="select">
+            <%= select_tag(:origin_id, options_for_select(@airport_options))%>
+        </div>
+    </div>
+    <div class="field">
+        <%= form.label :destination_id, class:"label"%>
+        <div class="select">
+            <%= select_tag(:destination_id, options_for_select(@airport_options))%>
+        </div>
+    </div>
+    <div class="field">
+        <%= form.submit "Search flights", class:"button"%>
+    </div>
 <% end %>
 
-
 <p><%= params%></p>
-<% @query_results.each do |f| %>
-    <%= link_to f.scheduled_time, f %>
+
+<%= form_with url: new_booking_path, method: :get do |form| %>
+    <div class="field">
+        <% @query_results.each do |f| %>
+            <label class="radio">
+                <%= radio_button_tag(:flight, f.id, class:"radio") %>
+                <%= f.scheduled_time%>
+            </label>
+        <% end %>
+    </div>
+    <div class="field">
+        <%= form.submit "Select Flight", class:"button"%>
+    </div>
 <% end %>
