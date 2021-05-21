@@ -29,7 +29,7 @@
                             <% @query_results.each do |f| %>
                                 <label class="radio">
                                     <%= radio_button_tag(:flight, f.id) %>
-                                    <%= f.scheduled_time%>
+                                    <%= f.scheduled_time.to_formatted_s(:long_ordinal)%>
                                 </label><br>
                             <% end %>
                         </div>

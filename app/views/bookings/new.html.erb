@@ -1,6 +1,17 @@
 <div class="block level-item mt-5">
     <div class="column is-half">
         <%= render "summary"%>
+        <% if @booking.errors.any? %>
+            <div class="block"></div>
+            <div id="error_explanation">
+            <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+            <ul>
+                <% @booking.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
         <div class="block"></div>
         <div class="box has-text-centered">
             <%= form_with model: @booking, local: true do |form| %>
@@ -22,9 +33,11 @@
                 <%= hidden_field_tag :flight, params[:flight] %>
                 <%= hidden_field_tag :passenger_count, params[:passenger_count] %>
                 <div class="field">
-                    <%= form.submit "Submit booking", class: "button is-success"%>
+                    <%= form.submit "Submit booking", class: "button is-success mr-2"%>
+                    <%= link_to "Cancel booking", root_path, class:"button is-info ml-2" %>
                 </div>
             <% end %>
         </div>
+        
     </div>
 </div>

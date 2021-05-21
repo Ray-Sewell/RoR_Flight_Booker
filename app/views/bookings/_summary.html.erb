@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <div class="card-header-title">
-            <p>
+            <p class="title is-size-5">
             <%= @flight.departure_airport.location_name %>
             [<%= @flight.departure_airport.airport_code %>] to
             <%= @flight.arrival_airport.location_name %>
@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="card-content">
-        <p>Depature time : <%= @flight.scheduled_time %></p>
-        <p>Arrival time : <%= @flight.scheduled_time + 1.hour %></p>
+        <p>Depature time : <%= @flight.scheduled_time.to_formatted_s(:long_ordinal) %></p>
+        <p>Arrival time : <%= (@flight.scheduled_time + 1.hour).to_formatted_s(:long_ordinal) %></p>
         <p>Total current passengers : <%= @flight.passengers.count %></p>
     </div>
 </div>
