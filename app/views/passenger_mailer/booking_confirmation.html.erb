@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for flying with us, <%= @passenger.name %></h1>
+    <br>
+    <p>Your flight has successfully been booked,</p>
+    <p>You can find your booking details <%= link_to "here", "http://[::1]:3000/bookings/#{@booking.id}" %>.</p>
+    <br>
+    <p>Have a great flight!</p>
+  </body>
+</html>
